@@ -1,0 +1,79 @@
+# ======================
+# ROOT LEVEL
+# ======================
+
+# Node modules
+node_modules/
+*/node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ======================
+# BACKEND
+# ======================
+
+backend/dist/
+backend/build/
+backend/uploads/
+backend/tmp/
+backend/.env
+
+# Logs & runtime
+backend/logs/
+backend/*.log
+
+# Coverage
+backend/coverage/
+
+# ======================
+# FRONTEND
+# ======================
+
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+
+# Vite specific
+frontend/.vite/
+
+# Coverage
+frontend/coverage/
+
+# ======================
+# MISC
+# ======================
+
+# Cache
+.cache/
+*.cache
+
+# Temporary files
+tmp/
+temp/
+
+# Lock files (optional - depends on team preference)
+# Uncomment if needed
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

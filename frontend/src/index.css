@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-base: #080b12;
+  --bg-surface: #0e1420;
+  --bg-elevated: #141b2a;
+  --bg-card: #111827;
+  --bg-hover: #1a2236;
+
+  --border: #1e2d45;
+  --border-light: #243352;
+
+  --text-primary: #e8edf5;
+  --text-secondary: #7a8ba8;
+  --text-muted: #4a5a72;
+
+  --accent: #4f8ef7;
+  --accent-dim: rgba(79, 142, 247, 0.12);
+  --accent-glow: rgba(79, 142, 247, 0.25);
+
+  --green: #34d399;
+  --green-dim: rgba(52, 211, 153, 0.12);
+  --yellow: #fbbf24;
+  --yellow-dim: rgba(251, 191, 36, 0.12);
+  --red: #f87171;
+  --red-dim: rgba(248, 113, 113, 0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167, 139, 250, 0.12);
+  --cyan: #22d3ee;
+  --cyan-dim: rgba(34, 211, 238, 0.12);
+
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.6);
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --transition: 0.18s ease;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes spinOnce {
+  to { transform: rotate(360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fadeUp    { animation: fadeUp 0.4s ease both; }
+.animate-fadeIn    { animation: fadeIn 0.3s ease both; }
+.animate-scaleIn   { animation: scaleIn 0.25s ease both; }
