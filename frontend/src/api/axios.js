@@ -1,11 +1,14 @@
 import axios from "axios";
 
+// ✅ Dynamic base URL
 const API = axios.create({
-  baseURL: "/api/v1",
-  withCredentials: true, // send HTTP-only cookies automatically
+  baseURL: import.meta.env.VITE_API_URL || "/api/v1",
+  withCredentials: true, // REQUIRED for HTTP-only cookies
 });
 
-// Refresh token interceptor — on 401, try /auth/refresh once, then redirect
+// ===============================
+// 🔁 Refresh token handling
+// ===============================
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -22,6 +25,7 @@ API.interceptors.response.use(
   async (error) => {
     const original = error.config;
 
+    // ✅ Handle 401 (except login/refresh)
     if (
       error.response?.status === 401 &&
       !original._retry &&
@@ -40,12 +44,18 @@ API.interceptors.response.use(
       isRefreshing = true;
 
       try {
+        // 🔁 Attempt refresh
         await API.post("/auth/refresh");
+
         processQueue(null);
+
         return API(original);
       } catch (refreshErr) {
         processQueue(refreshErr);
+
+        // 🚨 Hard redirect on failure
         window.location.href = "/login";
+
         return Promise.reject(refreshErr);
       } finally {
         isRefreshing = false;
@@ -53,7 +63,7 @@ API.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  },
+  }
 );
 
 export default API;
