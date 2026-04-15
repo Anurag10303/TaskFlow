@@ -59,7 +59,30 @@
   box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255,255,255,0.03) inset;
 }
 
-/* Logo mark */
+/* ── Brand row (logo + name) ── */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.auth-brand:hover .auth-brand-name {
+  color: var(--accent);
+}
+
+.auth-brand-name {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  transition: color var(--transition);
+}
+
+/* Logo mark (standalone, without brand row) */
 .auth-logomark {
   width: 48px;
   height: 48px;
@@ -70,7 +93,7 @@
   align-items: center;
   justify-content: center;
   color: var(--accent);
-  margin-bottom: 1.5rem;
+  flex-shrink: 0;
 }
 
 /* Header */

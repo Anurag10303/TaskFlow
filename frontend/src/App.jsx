@@ -3,6 +3,7 @@ import { useAuth } from "./context/AuthContext";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Landing from "./pages/Landing";
 
 const PublicRoute = ({ children }) => {
   const { user } = useAuth();
@@ -18,15 +19,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute>
-              <Register />
-            </PublicRoute>
-          }
-        />
+        {/* ✅ LANDING PAGE */}
+        <Route path="/" element={<Landing />} />
+
+        {/* AUTH */}
         <Route
           path="/login"
           element={
@@ -35,6 +31,17 @@ function App() {
             </PublicRoute>
           }
         />
+
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+
+        {/* PROTECTED */}
         <Route
           path="/dashboard"
           element={

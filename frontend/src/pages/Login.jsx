@@ -17,7 +17,6 @@ const Login = () => {
     setLoading(true);
     try {
       const res = await API.post("/auth/login", form);
-      // res.data = { success, message, user }  — cookies set by backend
       login(res.data.user);
       navigate("/dashboard");
     } catch (err) {
@@ -37,23 +36,26 @@ const Login = () => {
       <div className="auth-bg-glow auth-bg-glow--2" />
 
       <div className="auth-card animate-scaleIn">
-        {/* Logo mark */}
-        <div className="auth-logomark">
-          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <path
-              d="M14 2L24 8V20L14 26L4 20V8L14 2Z"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              fill="none"
-            />
-            <path
-              d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z"
-              fill="currentColor"
-              opacity="0.4"
-            />
-            <circle cx="14" cy="14" r="2.5" fill="currentColor" />
-          </svg>
-        </div>
+        {/* Logo mark + brand name */}
+        <Link to="/" className="auth-brand">
+          <div className="auth-logomark">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path
+                d="M14 2L24 8V20L14 26L4 20V8L14 2Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+              />
+              <path
+                d="M14 7L20 10.5V17.5L14 21L8 17.5V10.5L14 7Z"
+                fill="currentColor"
+                opacity="0.4"
+              />
+              <circle cx="14" cy="14" r="2.5" fill="currentColor" />
+            </svg>
+          </div>
+          <span className="auth-brand-name">TaskFlow</span>
+        </Link>
 
         <div className="auth-header">
           <h1 className="auth-title">Welcome back</h1>
