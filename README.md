@@ -5,6 +5,12 @@
 
 ---
 
+## 🚀 Live Demo
+
+Frontend: https://task-flow-self-sigma.vercel.app  
+Backend: https://taskflow-723m.onrender.com/api/v1  
+Swagger: https://taskflow-723m.onrender.com/api/v1/docs
+
 ## Table of Contents
 
 - [Overview](#overview)
@@ -45,44 +51,46 @@ TaskFlow is a full-stack web application for task management that demonstrates:
 
 ## Live Demo & Docs
 
-| Service | URL |
-|---------|-----|
-| Frontend | `http://localhost:5173` |
-| Backend API | `http://localhost:5000/api/v1` |
+| Service      | URL                                 |
+| ------------ | ----------------------------------- |
+| Frontend     | `http://localhost:5173`             |
+| Backend API  | `http://localhost:5000/api/v1`      |
 | Swagger Docs | `http://localhost:5000/api/v1/docs` |
-| Health Check | `http://localhost:5000/health` |
+| Health Check | `http://localhost:5000/health`      |
 
 ---
 
 ## Tech Stack
 
 ### Backend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| Node.js | 20+ | Runtime |
-| Express | 5.x | Web framework |
-| MongoDB | — | Database |
-| Mongoose | 9.x | ODM |
-| JSON Web Token | 9.x | Auth tokens |
-| bcrypt | 6.x | Password hashing |
-| helmet | 8.x | Security headers |
-| express-rate-limit | 8.x | Rate limiting |
-| express-validator | 7.x | Input validation |
-| mongo-sanitize | 1.x | NoSQL injection prevention |
-| winston | 3.x | Structured logging |
-| swagger-ui-express | 5.x | API documentation |
-| morgan | 1.x | HTTP request logging |
-| cookie-parser | 1.x | Cookie parsing |
-| cors | 2.x | Cross-origin resource sharing |
-| nodemon | 3.x | Development auto-reload |
+
+| Technology         | Version | Purpose                       |
+| ------------------ | ------- | ----------------------------- |
+| Node.js            | 20+     | Runtime                       |
+| Express            | 5.x     | Web framework                 |
+| MongoDB            | —       | Database                      |
+| Mongoose           | 9.x     | ODM                           |
+| JSON Web Token     | 9.x     | Auth tokens                   |
+| bcrypt             | 6.x     | Password hashing              |
+| helmet             | 8.x     | Security headers              |
+| express-rate-limit | 8.x     | Rate limiting                 |
+| express-validator  | 7.x     | Input validation              |
+| mongo-sanitize     | 1.x     | NoSQL injection prevention    |
+| winston            | 3.x     | Structured logging            |
+| swagger-ui-express | 5.x     | API documentation             |
+| morgan             | 1.x     | HTTP request logging          |
+| cookie-parser      | 1.x     | Cookie parsing                |
+| cors               | 2.x     | Cross-origin resource sharing |
+| nodemon            | 3.x     | Development auto-reload       |
 
 ### Frontend
-| Technology | Version | Purpose |
-|-----------|---------|---------|
-| React | 19.x | UI framework |
-| React Router DOM | 7.x | Client-side routing |
-| Axios | 1.x | HTTP client |
-| Vite | 8.x | Build tool & dev server |
+
+| Technology       | Version | Purpose                 |
+| ---------------- | ------- | ----------------------- |
+| React            | 19.x    | UI framework            |
+| React Router DOM | 7.x     | Client-side routing     |
+| Axios            | 1.x     | HTTP client             |
+| Vite             | 8.x     | Build tool & dev server |
 
 ---
 
@@ -232,25 +240,27 @@ All responses follow a consistent JSON format:
 
 Base path: `/api/v1/auth`
 
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| `POST` | `/register` | Public | Register new user. Sets HTTP-only cookies. |
-| `POST` | `/login` | Public | Login. Sets HTTP-only cookies. |
-| `POST` | `/refresh` | Public | Rotate refresh token. Issues new access token. |
-| `POST` | `/logout` | 🔒 Auth | Clear cookies, revoke refresh token. |
-| `GET` | `/me` | 🔒 Auth | Get current user profile. |
-| `PATCH` | `/change-password` | 🔒 Auth | Change password. Revokes all sessions. |
+| Method  | Endpoint           | Auth    | Description                                    |
+| ------- | ------------------ | ------- | ---------------------------------------------- |
+| `POST`  | `/register`        | Public  | Register new user. Sets HTTP-only cookies.     |
+| `POST`  | `/login`           | Public  | Login. Sets HTTP-only cookies.                 |
+| `POST`  | `/refresh`         | Public  | Rotate refresh token. Issues new access token. |
+| `POST`  | `/logout`          | 🔒 Auth | Clear cookies, revoke refresh token.           |
+| `GET`   | `/me`              | 🔒 Auth | Get current user profile.                      |
+| `PATCH` | `/change-password` | 🔒 Auth | Change password. Revokes all sessions.         |
 
 **Register / Login Request Body:**
+
 ```json
 {
-  "name": "Jane Doe",       // register only
+  "name": "Jane Doe", // register only
   "email": "jane@example.com",
-  "password": "Password1"   // min 8 chars, 1 uppercase, 1 number
+  "password": "Password1" // min 8 chars, 1 uppercase, 1 number
 }
 ```
 
 **Response (201/200):**
+
 ```json
 {
   "success": true,
@@ -273,29 +283,30 @@ Base path: `/api/v1/auth`
 
 Base path: `/api/v1/tasks` — all require authentication.
 
-| Method | Endpoint | Access | Description |
-|--------|----------|--------|-------------|
-| `GET` | `/` | 🔒 Auth | List tasks. Paginated, filterable. |
-| `POST` | `/` | 🔒 Auth | Create a new task. |
-| `GET` | `/stats` | 🔒 Auth | Task statistics (by status & priority). |
-| `GET` | `/:id` | 🔒 Auth | Get task by ID. |
-| `PUT` | `/:id` | 🔒 Owner/Mod/Admin | Update task. |
-| `DELETE` | `/:id` | 🔒 Owner/Mod/Admin | Delete task. |
+| Method   | Endpoint | Access             | Description                             |
+| -------- | -------- | ------------------ | --------------------------------------- |
+| `GET`    | `/`      | 🔒 Auth            | List tasks. Paginated, filterable.      |
+| `POST`   | `/`      | 🔒 Auth            | Create a new task.                      |
+| `GET`    | `/stats` | 🔒 Auth            | Task statistics (by status & priority). |
+| `GET`    | `/:id`   | 🔒 Auth            | Get task by ID.                         |
+| `PUT`    | `/:id`   | 🔒 Owner/Mod/Admin | Update task.                            |
+| `DELETE` | `/:id`   | 🔒 Owner/Mod/Admin | Delete task.                            |
 
 **Query Parameters (GET `/`):**
 
-| Param | Type | Description |
-|-------|------|-------------|
-| `status` | `todo \| in-progress \| review \| done` | Filter by status |
-| `priority` | `low \| medium \| high \| critical` | Filter by priority |
-| `search` | `string` | Full-text search on title/description |
-| `tags` | `string` | Comma-separated tag filter |
-| `page` | `integer` | Page number (default: 1) |
-| `limit` | `integer` | Results per page (default: 10, max: 100) |
-| `sort` | `string` | Sort field (e.g., `-createdAt`, `dueDate`) |
-| `archived` | `true \| false` | Show archived tasks |
+| Param      | Type                                    | Description                                |
+| ---------- | --------------------------------------- | ------------------------------------------ |
+| `status`   | `todo \| in-progress \| review \| done` | Filter by status                           |
+| `priority` | `low \| medium \| high \| critical`     | Filter by priority                         |
+| `search`   | `string`                                | Full-text search on title/description      |
+| `tags`     | `string`                                | Comma-separated tag filter                 |
+| `page`     | `integer`                               | Page number (default: 1)                   |
+| `limit`    | `integer`                               | Results per page (default: 10, max: 100)   |
+| `sort`     | `string`                                | Sort field (e.g., `-createdAt`, `dueDate`) |
+| `archived` | `true \| false`                         | Show archived tasks                        |
 
 **Create Task Request Body:**
+
 ```json
 {
   "title": "Design landing page",
@@ -304,7 +315,7 @@ Base path: `/api/v1/tasks` — all require authentication.
   "priority": "high",
   "tags": ["design", "frontend"],
   "dueDate": "2024-12-31",
-  "assignedTo": "userId123"  // admin/moderator only
+  "assignedTo": "userId123" // admin/moderator only
 }
 ```
 
@@ -314,12 +325,12 @@ Base path: `/api/v1/tasks` — all require authentication.
 
 Base path: `/api/v1/admin` — **admin role only**.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/stats` | Platform-wide user + task statistics |
-| `GET` | `/users` | List all users (paginated, searchable) |
-| `PATCH` | `/users/:id/role` | Change a user's role |
-| `PATCH` | `/users/:id/toggle-active` | Activate / deactivate user account |
+| Method  | Endpoint                   | Description                            |
+| ------- | -------------------------- | -------------------------------------- |
+| `GET`   | `/stats`                   | Platform-wide user + task statistics   |
+| `GET`   | `/users`                   | List all users (paginated, searchable) |
+| `PATCH` | `/users/:id/role`          | Change a user's role                   |
+| `PATCH` | `/users/:id/toggle-active` | Activate / deactivate user account     |
 
 ---
 
@@ -358,6 +369,7 @@ Base path: `/api/v1/admin` — **admin role only**.
 ```
 
 **Key properties:**
+
 - Access tokens stored in HTTP-only cookies → immune to XSS attacks
 - Refresh tokens stored in DB → can be revoked server-side
 - Token rotation on every refresh → old token invalidated immediately
@@ -440,21 +452,21 @@ Base path: `/api/v1/admin` — **admin role only**.
 
 ## Security Features
 
-| Feature | Implementation |
-|---------|---------------|
-| Password hashing | bcrypt with 12 salt rounds |
-| Token storage | HTTP-only cookies (XSS-proof) |
-| Token expiry | Access: 15 min · Refresh: 7 days |
-| Token rotation | New refresh token on every use |
-| Reuse detection | Revoke all sessions on stolen token reuse |
-| Security headers | `helmet` (CSP, HSTS, X-Frame-Options, etc.) |
-| Rate limiting | 200 req/15 min global · 20 req/15 min on auth routes |
-| Input validation | `express-validator` on all endpoints |
-| NoSQL injection | `mongo-sanitize` middleware |
-| CORS | Whitelist-only origins with credentials |
-| Request size limit | 10kb body limit |
-| Error handling | Operational errors only exposed to client |
-| Logging | Winston with file + console transports |
+| Feature            | Implementation                                       |
+| ------------------ | ---------------------------------------------------- |
+| Password hashing   | bcrypt with 12 salt rounds                           |
+| Token storage      | HTTP-only cookies (XSS-proof)                        |
+| Token expiry       | Access: 15 min · Refresh: 7 days                     |
+| Token rotation     | New refresh token on every use                       |
+| Reuse detection    | Revoke all sessions on stolen token reuse            |
+| Security headers   | `helmet` (CSP, HSTS, X-Frame-Options, etc.)          |
+| Rate limiting      | 200 req/15 min global · 20 req/15 min on auth routes |
+| Input validation   | `express-validator` on all endpoints                 |
+| NoSQL injection    | `mongo-sanitize` middleware                          |
+| CORS               | Whitelist-only origins with credentials              |
+| Request size limit | 10kb body limit                                      |
+| Error handling     | Operational errors only exposed to client            |
+| Logging            | Winston with file + console transports               |
 
 ---
 
@@ -477,18 +489,22 @@ Base path: `/api/v1/admin` — **admin role only**.
 ## Scalability Notes
 
 ### Current Architecture (Monolith)
+
 The application follows a clean **MVC monolith** with clearly separated concerns, making it easy to extract services later.
 
 ### Horizontal Scaling
+
 - **Stateless JWT**: The API is fully stateless at the request level. Any number of server instances can handle any request — no session affinity required.
 - Deploy behind an **Nginx / AWS ALB** load balancer without any code changes.
 
 ### Database Scaling
+
 - **Compound indexes** on `createdBy + status + createdAt`, `assignedTo + status`, and `tags` cover the most common query patterns.
 - MongoDB supports **replica sets** (read scaling) and **sharding** (write scaling) as data grows.
 - Swap refresh token storage to **Redis** for O(1) token lookups at scale.
 
 ### Caching (Recommended Next Step)
+
 ```
 Redis Layer:
   - Cache GET /tasks responses by user + filter hash (TTL: 30s)
@@ -498,16 +514,20 @@ Redis Layer:
 ```
 
 ### Microservices Migration Path
+
 The modular structure allows clean extraction:
+
 ```
 taskflow-auth-service    (auth routes + user model)
 taskflow-task-service    (task routes + task model)
 taskflow-admin-service   (admin routes)
 taskflow-gateway         (Nginx / Kong API gateway)
 ```
+
 Services communicate via **shared JWT secret** or **JWKS endpoint**.
 
 ### Deployment Readiness
+
 - **Docker-ready**: Each service needs only a `Dockerfile` + `docker-compose.yml`
 - **Environment-based config**: All secrets via `.env` / Kubernetes secrets
 - **Graceful shutdown**: `SIGTERM` / `SIGINT` handlers close connections cleanly
@@ -519,6 +539,7 @@ Services communicate via **shared JWT secret** or **JWKS endpoint**.
 ## Assignment Checklist
 
 ### ✅ Backend (Primary Focus)
+
 - [x] User registration & login APIs with **password hashing** (bcrypt 12 rounds)
 - [x] **JWT authentication** via HTTP-only cookies (access + refresh token rotation)
 - [x] **Role-based access control** — user, moderator, admin
@@ -530,6 +551,7 @@ Services communicate via **shared JWT secret** or **JWKS endpoint**.
 - [x] **MongoDB** schema with Mongoose ODM and compound indexes
 
 ### ✅ Basic Frontend (Supportive)
+
 - [x] Built with **React 19 + Vite**
 - [x] **Landing page** — public marketing page
 - [x] **Register & Login** UI with client-side validation
@@ -538,6 +560,7 @@ Services communicate via **shared JWT secret** or **JWKS endpoint**.
 - [x] **Error/success messages** from API responses (toast notifications)
 
 ### ✅ Security & Scalability
+
 - [x] Secure JWT token handling (HTTP-only cookies, rotation, reuse detection)
 - [x] Input **sanitization** (mongo-sanitize) & **validation** (express-validator)
 - [x] **Scalable project structure** — modular MVC, easy to add new modules
@@ -567,4 +590,4 @@ cd frontend && npm install && npm run dev
 
 ---
 
-*Built for the Primetrade.ai Backend Developer Intern assignment. All core requirements implemented and production-ready.*
+_Built for the Primetrade.ai Backend Developer Intern assignment. All core requirements implemented and production-ready._
