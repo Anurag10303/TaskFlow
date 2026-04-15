@@ -19,23 +19,23 @@ export const verifyRefreshToken = (token) =>
 // Cookie options — HTTP-only, secure in prod
 export const accessCookieOptions = () => ({
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+  secure: true,
+  sameSite: "none",
   maxAge: 15 * 60 * 1000, // 15 min
   path: "/",
 });
 
 export const refreshCookieOptions = () => ({
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+  secure: true,
+  sameSite: "none",
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   path: "/api/v1/auth/refresh", // restrict refresh cookie to refresh endpoint
 });
 
 export const clearCookieOptions = () => ({
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "strict" : "lax",
+  secure: true,
+  sameSite: "none",
   path: "/",
 });
