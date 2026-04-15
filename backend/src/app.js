@@ -13,6 +13,7 @@ import { ApiError } from "./utils/ApiError.js";
 import logger from "./utils/logger.js";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpec } from "./config/swagger.js";
+import cors from "cors";
 
 const app = express();
 
